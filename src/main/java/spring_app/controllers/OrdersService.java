@@ -39,27 +39,6 @@ public class OrdersService {
         return dataAcessComp.getNames();
     }
 
-    /**
-     * If you keep hitting this uri, then list will eventually be empty
-     * Breaking the rule of state less.
-     */
-    @RequestMapping("/call")
-    public List<String> callOther() throws IOException {
-        URL url = new URL("http://localhost:8080/testState");
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        List<String> s = new ArrayList<>();
-        con.setRequestMethod("GET");
-        int code = con.getResponseCode();
-        if(code == 200) {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            while(in.ready()) {
-                s.add(in.readLine());
-            }
-
-        }
-        return s;
-    }
 
     /**
      * To Test the input parameter annotation. To fill hit:
@@ -71,7 +50,7 @@ public class OrdersService {
     @RequestMapping("/info/{key}")
     public String info(@PathVariable String key, @RequestParam String token) {
         String value = "";
-        if("Vin". equals(key)) {
+        if("1". equals(key)) {
             value = "That's my name";
         }
         if("date".equals(token)) {
@@ -85,8 +64,21 @@ public class OrdersService {
      * http://localhost:8080/add
      * @return
      */
-    @RequestMapping(value = "/addName", method = RequestMethod.POST)
+    @RequestMapping(value = "/names", method = RequestMethod.POST)
     public int addName(@RequestParam("item") String item) {
+        //if you a item in the url and item as a body item, it will add both as
+        //as one item comma seperated. size goes up by 1.
+        dataAcessComp.getNames().add(item);
+        return dataAcessComp.getNames().size();
+    }
+
+    /**
+     * To Test post. Adds name to list
+     * http://localhost:8080/add
+     * @return
+     */
+    @RequestMapping(value = "/names", method = RequestMethod.PUT)
+    public int update(@RequestParam("item") String item) {
         //if you a item in the url and item as a body item, it will add both as
         //as one item comma seperated. size goes up by 1.
         dataAcessComp.getNames().add(item);
