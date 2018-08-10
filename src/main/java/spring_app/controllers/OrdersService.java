@@ -92,4 +92,12 @@ public class OrdersService {
         dataAcessComp.getNames().add(item);
         return dataAcessComp.getNames().size();
     }
+
+    @RequestMapping(value = "/name/{key}", method = RequestMethod.PUT)
+    public void update(@PathVariable Integer key, @RequestParam("item") String item) {
+        //if you a item in the url and item as a body item, it will add both as
+        //as one item comma seperated. size goes up by 1.
+        dataAcessComp.update(key, item);
+
+    }
 }

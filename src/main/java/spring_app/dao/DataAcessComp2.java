@@ -13,4 +13,9 @@ public class DataAcessComp2 implements IDataAcessComp {
     public List<String> getNames() {
         return new ArrayList<>(Arrays.asList("Joseph", "Time"));
     }
+
+    @Override
+    public void update(Integer i, String value) {
+
+    }
 }
