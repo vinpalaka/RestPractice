@@ -9,11 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -74,6 +72,9 @@ public class OrdersService {
         if("Vin". equals(key)) {
             value = "That's my name";
         }
+        if("Jam". equals(key)) {
+            value = "Make a sanvich";
+        }
         if("date".equals(token)) {
             value += ": " + LocalDateTime.now().toString();
         }
@@ -98,6 +99,5 @@ public class OrdersService {
         //if you a item in the url and item as a body item, it will add both as
         //as one item comma seperated. size goes up by 1.
         dataAcessComp.update(key, item);
-
     }
 }
