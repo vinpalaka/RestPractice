@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: vin-sample
+  cloud:
+    kubernetes:
+      enabled: false  # For now disabling due to some changes in our Kubernetes cluster
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/vin-sample
+    username: docker
+    password: 1qazxsw2
+  jpa:
+    generate-ddl: false
+    open-in-view: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQL94Dialect
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+      hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.ehcache.missing_cache_strategy: "create"
+      javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
